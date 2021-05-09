@@ -14,37 +14,38 @@ int main(int argc,char*argv[]){
 
     if(argc==3){
     	
-    	//¶ÁÈ¡ÎÄ¼þµÄÄÚÈÝ
+    	//è¯»å–æ–‡ä»¶çš„å†…å®¹
 		fp = fopen(argv[2],"r");
 		
-		//´ò¿ªÊ§°Ü 
+		//æ‰“å¼€å¤±è´¥ 
 		if(fp == NULL){
-			printf("´íÎó£ºÎÞ·¨´ò¿ª%s\n",argv[2]);
+			printf("é”™è¯¯ï¼šæ— æ³•æ‰“å¼€%s\n",argv[2]);
 			exit(1);
 		} 
-			//¶Ô²ÎÊý½øÐÐÆ¥Åä 
-		    if(!strcmp(argv[1],"-c")){//Í³¼Æ×Ö·ûÊý 
+			//å¯¹å‚æ•°è¿›è¡ŒåŒ¹é… 
+		    if(!strcmp(argv[1],"-c")){//ç»Ÿè®¡å­—ç¬¦æ•° 
 		        number = getChar(fp);
-		     	printf("×Ö·ûÊýÎª%d\n",number);
+		     	printf("å­—ç¬¦æ•°ä¸º%d\n",number);
 		    }
 		
-		    else if(!strcmp(argv[1],"-w")){//Í³¼Æµ¥´ÊÊý 
+		    else if(!strcmp(argv[1],"-w")){//ç»Ÿè®¡å•è¯æ•° 
 			    number = getWord(fp);
-			    printf("µ¥´ÊÊýÎª%d\n",number); 
+			    printf("å•è¯æ•°ä¸º%d\n",number); 
 		   }
 	}
 	
 	else {
-		printf("´íÎó£º²ÎÊýÊäÈë´íÎó£¬ÇëÖØÐÂÊäÈë\n");
+		printf("é”™è¯¯ï¼šå‚æ•°è¾“å…¥é”™è¯¯ï¼Œç¨‹åºé€€å‡º\n");
+		exit(0);
 	}
 	
 } 
 
-//Í³¼Æ×Ö·ûÊý 
+//ç»Ÿè®¡å­—ç¬¦æ•° 
 int getChar(FILE *fp){
 	char ch;
 	int number=0;
-	while((ch=fgetc(fp))!=EOF){//µ±º¯Êýfgetc·µ»ØµÄASCIIÖµ²»Îª EOF£¬±íÊ¾»¹¿ÉÒÔ¼ÌÐø¶Á 
+	while((ch=fgetc(fp))!=EOF){//å½“å‡½æ•°fgetcè¿”å›žçš„ASCIIå€¼ä¸ä¸º EOFï¼Œè¡¨ç¤ºè¿˜å¯ä»¥ç»§ç»­è¯» 
 		if((ch!='\n')&&(ch!=' ')&&(ch!='\t')){
 			number++;
 		}
@@ -53,7 +54,7 @@ int getChar(FILE *fp){
 	return number;
 }
 
-//Í³¼Æµ¥´ÊÊý 
+//ç»Ÿè®¡å•è¯æ•° 
 int getWord(FILE *fp){
 	int flag=0;
 	int number=0;
@@ -63,7 +64,7 @@ int getWord(FILE *fp){
         ch = fgetc(fp);
         if((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9'))
             flag = 0;
-        else if(flag == 0 && (ch != '-' && ch != '/'&& ch != '\'')) //Èç¹û½øÈëÕâ¸öÑ­»·£¬´ú±í²»·ûºÏÉÏÃæµÄÑ­»·£¬¼´·µ»ØµÄ²»ÊÇ×ÖÄ¸»òÕßÊý×Ö 
+        else if(flag == 0 && (ch != '-' && ch != '/'&& ch != '\'')) //å¦‚æžœè¿›å…¥è¿™ä¸ªå¾ªçŽ¯ï¼Œä»£è¡¨ä¸ç¬¦åˆä¸Šé¢çš„å¾ªçŽ¯ï¼Œå³è¿”å›žçš„ä¸æ˜¯å­—æ¯æˆ–è€…æ•°å­— 
         {
             number++;
             flag = 1;
